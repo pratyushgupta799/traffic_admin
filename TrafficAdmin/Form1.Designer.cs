@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            button1 = new Button();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             label1 = new Label();
@@ -44,7 +45,10 @@
             label7 = new Label();
             formsPlot1 = new ScottPlot.WinForms.FormsPlot();
             formsPlot2 = new ScottPlot.WinForms.FormsPlot();
-            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -55,11 +59,31 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(18, 71, 127);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Location = new Point(-9, 96);
             panel1.Name = "panel1";
             panel1.Size = new Size(354, 609);
             panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(18, 71, 127);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ButtonHighlight;
+            button1.Location = new Point(3, 64);
+            button1.Name = "button1";
+            button1.Size = new Size(351, 39);
+            button1.TabIndex = 0;
+            button1.Text = "Citizens";
+            button1.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -210,14 +234,69 @@
             formsPlot2.Size = new Size(491, 264);
             formsPlot2.TabIndex = 7;
             // 
-            // button1
+            // button2
             // 
-            button1.Location = new Point(42, 64);
-            button1.Name = "button1";
-            button1.Size = new Size(312, 39);
-            button1.TabIndex = 0;
-            button1.Text = "Database";
-            button1.UseVisualStyleBackColor = true;
+            button2.BackColor = Color.FromArgb(18, 71, 127);
+            button2.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = SystemColors.ButtonHighlight;
+            button2.Location = new Point(3, 109);
+            button2.Name = "button2";
+            button2.Size = new Size(351, 39);
+            button2.TabIndex = 1;
+            button2.Text = "Violations";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.FromArgb(18, 71, 127);
+            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.ForeColor = SystemColors.ButtonHighlight;
+            button3.Location = new Point(0, 154);
+            button3.Name = "button3";
+            button3.Size = new Size(351, 39);
+            button3.TabIndex = 2;
+            button3.Text = "Camera and AI";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(18, 71, 127);
+            button4.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.ForeColor = SystemColors.ButtonHighlight;
+            button4.Location = new Point(3, 199);
+            button4.Name = "button4";
+            button4.Size = new Size(351, 39);
+            button4.TabIndex = 3;
+            button4.Text = "Profile Settings";
+            button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(18, 71, 127);
+            button5.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.ForeColor = SystemColors.ButtonFace;
+            button5.Location = new Point(3, 557);
+            button5.Name = "button5";
+            button5.Size = new Size(148, 39);
+            button5.TabIndex = 4;
+            button5.Text = "Log out";
+            button5.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -267,5 +346,9 @@
         private ScottPlot.WinForms.FormsPlot formsPlot1;
         private ScottPlot.WinForms.FormsPlot formsPlot2;
         private Button button1;
+        private Button button2;
+        private Button button4;
+        private Button button3;
+        private Button button5;
     }
 }

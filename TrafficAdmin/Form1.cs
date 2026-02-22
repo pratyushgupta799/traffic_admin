@@ -99,5 +99,23 @@ namespace TrafficAdmin
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Citizens citizens = new Citizens();
+            citizens.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Violation violation = new Violation();
+            violation.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Upload upload = new Upload();
+            upload.Show();
+        }
     }
 }

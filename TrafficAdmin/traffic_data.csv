@@ -1,0 +1,186 @@
+Text,Category
+Driving at 110 kmph in residential area,Speeding
+Overspeeding near school zone,Speeding
+Car moving at dangerous high speed on highway,Speeding
+Exceeded speed limit by 40 kmph,Speeding
+Racing another vehicle on city road,Speeding
+Speeding through traffic lights,Speeding
+Truck going above permitted speed,Speeding
+Motorbike speeding in narrow lane,Speeding
+Driving too fast in rain,Speeding
+High speed driving in crowded market,Speeding
+Accelerating beyond speed limit,Speeding
+Driving at 130 kmph on expressway,Speeding
+Speed violation captured by camera,Speeding
+Ignoring posted speed limit sign,Speeding
+Reckless high speed driving,Speeding
+Speeding in construction zone,Speeding
+Driving too fast near hospital,Speeding
+Vehicle recorded at extreme speed,Speeding
+Dangerous acceleration in traffic,Speeding
+Speeding during heavy traffic hours,Speeding
+Driving 90 in 50 zone,Speeding
+Rapid speeding in tunnel,Speeding
+Car overspeeding downhill,Speeding
+Breaking urban speed regulation,Speeding
+Excessive speed on main road,Speeding
+Driving too fast around sharp curve,Speeding
+Speeding in residential street,Speeding
+Crossed speed limit checkpoint at high speed,Speeding
+Motorist caught speeding by radar,Speeding
+Aggressive high speed driving behavior,Speeding
+
+Car parked in no parking zone,ParkingViolation
+Vehicle blocking driveway,ParkingViolation
+Illegal parking near intersection,ParkingViolation
+Car parked on pedestrian crossing,ParkingViolation
+Parking in front of fire hydrant,ParkingViolation
+Vehicle double parked on street,ParkingViolation
+Unauthorized parking in restricted area,ParkingViolation
+Parking in handicapped space without permit,ParkingViolation
+Blocking emergency exit with vehicle,ParkingViolation
+Car left unattended in tow away zone,ParkingViolation
+Parking on sidewalk,ParkingViolation
+Improper parking causing obstruction,ParkingViolation
+Truck parked in loading zone illegally,ParkingViolation
+Parking in bus stop area,ParkingViolation
+Vehicle standing in no stopping zone,ParkingViolation
+Car parked against traffic direction,ParkingViolation
+Illegal roadside parking,ParkingViolation
+Parking in school entrance area,ParkingViolation
+Vehicle parked on zebra crossing,ParkingViolation
+Car stopped in ambulance lane,ParkingViolation
+Unauthorized parking inside private property,ParkingViolation
+Blocking traffic by improper parking,ParkingViolation
+Car left in restricted parking area,ParkingViolation
+Parking in government reserved space,ParkingViolation
+Improper angle parking on street,ParkingViolation
+Vehicle parked in red zone,ParkingViolation
+Parking too close to junction,ParkingViolation
+Car occupying two parking spots,ParkingViolation
+Illegal overnight street parking,ParkingViolation
+Parking violation near public building,ParkingViolation
+
+Crossed red light at intersection,SignalJumping
+Ran through red traffic signal,SignalJumping
+Ignored red signal at junction,SignalJumping
+Vehicle jumped traffic light,SignalJumping
+Passing signal after it turned red,SignalJumping
+Crossing intersection during red light,SignalJumping
+Disobeyed traffic signal instructions,SignalJumping
+Motorbike ran red light,SignalJumping
+Car entered crossing on red signal,SignalJumping
+Failure to stop at red light,SignalJumping
+Signal violation at busy crossing,SignalJumping
+Ignoring stop light at traffic point,SignalJumping
+Red light violation captured by camera,SignalJumping
+Crossing while signal was red,SignalJumping
+Driving through red intersection,SignalJumping
+Signal breach at main square,SignalJumping
+Jumped signal during peak hours,SignalJumping
+Did not halt at red signal,SignalJumping
+Signal jumping near railway crossing,SignalJumping
+Ignoring traffic signal rules,SignalJumping
+Vehicle crossed stop line on red,SignalJumping
+Red signal offense recorded,SignalJumping
+Car sped through red signal,SignalJumping
+Signal violation near market,SignalJumping
+Ran red light recklessly,SignalJumping
+Failed to obey traffic light,SignalJumping
+Signal disobedience at crossing,SignalJumping
+Vehicle ignored red indicator,SignalJumping
+Crossed intersection illegally on red,SignalJumping
+Signal jumping caught on CCTV,SignalJumping
+
+Riding bike without helmet,NoHelmet
+Motorcyclist not wearing helmet,NoHelmet
+No protective helmet while riding,NoHelmet
+Driving two wheeler without helmet,NoHelmet
+Helmet not worn by rider,NoHelmet
+Pillion rider without helmet,NoHelmet
+Bike rider ignoring helmet rule,NoHelmet
+Riding scooter bareheaded,NoHelmet
+No helmet during motorcycle ride,NoHelmet
+Helmetless riding on highway,NoHelmet
+Ignoring helmet safety regulation,NoHelmet
+Two wheeler rider without protection gear,NoHelmet
+Bike passenger without helmet,NoHelmet
+Failure to wear helmet,NoHelmet
+Motorcycle rider not using helmet,NoHelmet
+Riding without safety helmet,NoHelmet
+Helmet rule violation,NoHelmet
+Rider caught without helmet,NoHelmet
+No helmet while driving bike,NoHelmet
+Bareheaded motorbike driving,NoHelmet
+Helmet violation near traffic point,NoHelmet
+Motorbike rider ignoring helmet law,NoHelmet
+Not wearing helmet in city area,NoHelmet
+Two wheeler helmet offense,NoHelmet
+Driving motorcycle without head protection,NoHelmet
+Pillion passenger without helmet,NoHelmet
+Scooter rider without helmet gear,NoHelmet
+Violation of helmet safety norm,NoHelmet
+Riding without mandatory helmet,NoHelmet
+Helmet non compliance on road,NoHelmet
+
+Driver was drunk while driving,DrunkDriving
+Driving under influence of alcohol,DrunkDriving
+Alcohol intoxicated driving,DrunkDriving
+Car swerving due to drunk driver,DrunkDriving
+Driving after heavy drinking,DrunkDriving
+Driver tested positive for alcohol,DrunkDriving
+Operating vehicle while intoxicated,DrunkDriving
+Drunk driving on highway,DrunkDriving
+Alcohol level above legal limit,DrunkDriving
+Driving in drunken condition,DrunkDriving
+Driver smelled of alcohol,DrunkDriving
+Impaired driving due to drinking,DrunkDriving
+Vehicle crash caused by drunk driving,DrunkDriving
+Driving after consuming liquor,DrunkDriving
+Drunk motorist caught by police,DrunkDriving
+Driving while intoxicated at night,DrunkDriving
+Alcohol influenced reckless driving,DrunkDriving
+Over limit blood alcohol while driving,DrunkDriving
+Driving under alcohol effect,DrunkDriving
+Drunk driver failed sobriety test,DrunkDriving
+Vehicle operated after alcohol consumption,DrunkDriving
+Drinking and driving offense,DrunkDriving
+Driver under alcohol influence,DrunkDriving
+Driving car in intoxicated state,DrunkDriving
+Drunken driving near city center,DrunkDriving
+Alcohol related driving violation,DrunkDriving
+Driver caught with high alcohol level,DrunkDriving
+Drunk driving incident reported,DrunkDriving
+Driving after party intoxicated,DrunkDriving
+Driving under the influence offense,DrunkDriving
+
+Driving without valid license,NoLicense
+Operating vehicle without license,NoLicense
+No driving license presented,NoLicense
+Unlicensed driver on road,NoLicense
+Failure to carry driving license,NoLicense
+Driving without permit,NoLicense
+Motorist without valid documentation,NoLicense
+No legal license for driving,NoLicense
+Driver unable to show license,NoLicense
+Vehicle driven without authorization,NoLicense
+Driving without proper certification,NoLicense
+Unlicensed motorcycle rider,NoLicense
+Driving without legal approval,NoLicense
+License expired and still driving,NoLicense
+Driving with suspended license,NoLicense
+Unauthorized driving without license,NoLicense
+No proof of license during check,NoLicense
+Driver failed to produce license,NoLicense
+Operating car without valid license,NoLicense
+Driving despite license cancellation,NoLicense
+No license violation recorded,NoLicense
+Driver without required permit,NoLicense
+Illegal driving without license,NoLicense
+Vehicle driven without official license,NoLicense
+Driving without carrying license card,NoLicense
+Rider without valid driving document,NoLicense
+Driving after license suspension,NoLicense
+Unlicensed vehicle operation,NoLicense
+License rule violation while driving,NoLicense
+Driving without registration credentials,NoLicense

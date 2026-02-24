@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -39,17 +40,16 @@
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
-            label3 = new Label();
+            violationCountTxt = new Label();
             label2 = new Label();
             panel4 = new Panel();
-            label4 = new Label();
+            finesCollectedTxt = new Label();
             label5 = new Label();
             panel5 = new Panel();
-            label6 = new Label();
+            fineDueTxt = new Label();
             label7 = new Label();
             formsPlot1 = new ScottPlot.WinForms.FormsPlot();
             formsPlot2 = new ScottPlot.WinForms.FormsPlot();
-            button6 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -70,6 +70,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(354, 609);
             panel1.TabIndex = 0;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(18, 71, 127);
+            button6.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button6.ForeColor = SystemColors.ButtonHighlight;
+            button6.Location = new Point(3, 244);
+            button6.Name = "button6";
+            button6.Size = new Size(351, 39);
+            button6.TabIndex = 5;
+            button6.Text = "Upload";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -187,7 +204,7 @@
             // 
             panel3.BackColor = Color.FromArgb(18, 71, 127);
             panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(label3);
+            panel3.Controls.Add(violationCountTxt);
             panel3.Controls.Add(label2);
             panel3.ForeColor = Color.White;
             panel3.Location = new Point(374, 96);
@@ -195,16 +212,17 @@
             panel3.Size = new Size(332, 201);
             panel3.TabIndex = 3;
             // 
-            // label3
+            // violationCountTxt
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(30, 78);
-            label3.Name = "label3";
-            label3.Size = new Size(226, 81);
-            label3.TabIndex = 1;
-            label3.Text = "84,569";
+            violationCountTxt.AutoSize = true;
+            violationCountTxt.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            violationCountTxt.ForeColor = Color.White;
+            violationCountTxt.Location = new Point(30, 78);
+            violationCountTxt.Name = "violationCountTxt";
+            violationCountTxt.Size = new Size(226, 81);
+            violationCountTxt.TabIndex = 1;
+            violationCountTxt.Text = "84,569";
+            violationCountTxt.Click += violationCountTxt_Click;
             // 
             // label2
             // 
@@ -221,7 +239,7 @@
             // 
             panel4.BackColor = Color.White;
             panel4.BorderStyle = BorderStyle.Fixed3D;
-            panel4.Controls.Add(label4);
+            panel4.Controls.Add(finesCollectedTxt);
             panel4.Controls.Add(label5);
             panel4.ForeColor = Color.White;
             panel4.Location = new Point(725, 96);
@@ -230,16 +248,17 @@
             panel4.TabIndex = 4;
             panel4.Paint += panel4_Paint;
             // 
-            // label4
+            // finesCollectedTxt
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(47, 78);
-            label4.Name = "label4";
-            label4.Size = new Size(242, 81);
-            label4.TabIndex = 1;
-            label4.Text = "1.3 lacs";
+            finesCollectedTxt.AutoSize = true;
+            finesCollectedTxt.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            finesCollectedTxt.ForeColor = Color.Black;
+            finesCollectedTxt.Location = new Point(47, 78);
+            finesCollectedTxt.Name = "finesCollectedTxt";
+            finesCollectedTxt.Size = new Size(242, 81);
+            finesCollectedTxt.TabIndex = 1;
+            finesCollectedTxt.Text = "1.3 lacs";
+            finesCollectedTxt.Click += finesCollectedTxt_Click;
             // 
             // label5
             // 
@@ -256,7 +275,7 @@
             // 
             panel5.BackColor = Color.White;
             panel5.BorderStyle = BorderStyle.Fixed3D;
-            panel5.Controls.Add(label6);
+            panel5.Controls.Add(fineDueTxt);
             panel5.Controls.Add(label7);
             panel5.ForeColor = Color.White;
             panel5.Location = new Point(1091, 96);
@@ -264,16 +283,17 @@
             panel5.Size = new Size(337, 201);
             panel5.TabIndex = 5;
             // 
-            // label6
+            // fineDueTxt
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Black;
-            label6.Location = new Point(44, 78);
-            label6.Name = "label6";
-            label6.Size = new Size(242, 81);
-            label6.TabIndex = 1;
-            label6.Text = "0.5 lacs";
+            fineDueTxt.AutoSize = true;
+            fineDueTxt.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            fineDueTxt.ForeColor = Color.Black;
+            fineDueTxt.Location = new Point(44, 78);
+            fineDueTxt.Name = "fineDueTxt";
+            fineDueTxt.Size = new Size(242, 81);
+            fineDueTxt.TabIndex = 1;
+            fineDueTxt.Text = "0.5 lacs";
+            fineDueTxt.Click += fineDueTxt_Click;
             // 
             // label7
             // 
@@ -302,23 +322,6 @@
             formsPlot2.Name = "formsPlot2";
             formsPlot2.Size = new Size(491, 264);
             formsPlot2.TabIndex = 7;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(18, 71, 127);
-            button6.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(212, 157, 19);
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.ForeColor = SystemColors.ButtonHighlight;
-            button6.Location = new Point(3, 244);
-            button6.Name = "button6";
-            button6.Size = new Size(351, 39);
-            button6.TabIndex = 5;
-            button6.Text = "Upload";
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
             // 
             // Form1
             // 
@@ -358,12 +361,12 @@
         private Label label1;
         private Panel panel3;
         private Label label2;
-        private Label label3;
+        private Label violationCountTxt;
         private Panel panel4;
-        private Label label4;
+        private Label finesCollectedTxt;
         private Label label5;
         private Panel panel5;
-        private Label label6;
+        private Label fineDueTxt;
         private Label label7;
         private ScottPlot.WinForms.FormsPlot formsPlot1;
         private ScottPlot.WinForms.FormsPlot formsPlot2;

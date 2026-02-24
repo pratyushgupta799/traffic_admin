@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace TrafficAdmin
 {
@@ -15,7 +18,7 @@ namespace TrafficAdmin
 
         private void Violation_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LoadSampleData()
@@ -88,7 +91,48 @@ namespace TrafficAdmin
 
         private void Violation_Load_1(object sender, EventArgs e)
         {
-            LoadSampleData();
+            LoadExcelData();
+        }
+
+        private void LoadExcelData()
+        {
+            string filePath = @"C:\Users\praty\Desktop\TrafficAdmin\face_api\violations.xlsx";
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("Excel file not found.");
+                return;
+            }
+
+            ExcelPackage.License.SetNonCommercialPersonal("TrafficAdmin App");
+
+            violationTable = new DataTable();
+
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                var worksheet = package.Workbook.Worksheets[0];
+                int colCount = worksheet.Dimension.End.Column;
+                int rowCount = worksheet.Dimension.End.Row;
+
+                // Add columns
+                for (int col = 1; col <= colCount; col++)
+                {
+                    violationTable.Columns.Add(worksheet.Cells[1, col].Text);
+                }
+
+                // Add rows
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    DataRow newRow = violationTable.NewRow();
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        newRow[col - 1] = worksheet.Cells[row, col].Text;
+                    }
+                    violationTable.Rows.Add(newRow);
+                }
+            }
+
+            dataGridView1.DataSource = violationTable;
         }
     }
 }

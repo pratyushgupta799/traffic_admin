@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -69,7 +70,7 @@ namespace TrafficAdmin
 
         private void Citizens_Load(object sender, EventArgs e)
         {
-            LoadSampleData();
+            LoadExcelData();
         }
 
         private void LoadSampleData()
@@ -95,6 +96,47 @@ namespace TrafficAdmin
             citizensTable.Rows.Add("Ritika Das", "5544332211", "890189018901", "Kolkata", "WB-02-2020444", 0, "₹0", "Clear");
             citizensTable.Rows.Add("Karan Malhotra", "4433221100", "901290129012", "Bangalore", "KA-05-2020555", 6, "₹9000", "Blacklisted");
             citizensTable.Rows.Add("Anjali Gupta", "3322110099", "112233445566", "Hyderabad", "TS-09-2020666", 2, "₹2000", "Pending");
+
+            dataGridView1.DataSource = citizensTable;
+        }
+
+        private void LoadExcelData()
+        {
+            string filePath = @"C:\Users\praty\Desktop\TrafficAdmin\face_api\traffic_db.xlsx";
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("Excel file not found.");
+                return;
+            }
+
+            ExcelPackage.License.SetNonCommercialPersonal("TrafficAdmin App");
+
+            citizensTable = new DataTable();
+
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                var worksheet = package.Workbook.Worksheets[0];
+                int colCount = worksheet.Dimension.End.Column;
+                int rowCount = worksheet.Dimension.End.Row;
+
+                // Add columns
+                for (int col = 1; col <= colCount; col++)
+                {
+                    citizensTable.Columns.Add(worksheet.Cells[1, col].Text);
+                }
+
+                // Add rows
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    DataRow newRow = citizensTable.NewRow();
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        newRow[col - 1] = worksheet.Cells[row, col].Text;
+                    }
+                    citizensTable.Rows.Add(newRow);
+                }
+            }
 
             dataGridView1.DataSource = citizensTable;
         }

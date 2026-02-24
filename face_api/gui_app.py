@@ -8,6 +8,8 @@ from tkinter import messagebox
 import requests, threading, cv2, io
 from PIL import Image, ImageTk
 from datetime import datetime
+from openpyxl import Workbook, load_workbook
+import os
 
 API  = "http://localhost:5000"
 NAVY = "#12477F"
@@ -319,6 +321,7 @@ class App:
                 self._st(f"Failed: {err}"); return
 
             self._show(d)
+            self._save_to_excel(d)
             self._captured = None
             self.cap_status.config(text="")
             self.sub_btn.config(state="disabled")
@@ -394,6 +397,40 @@ class App:
                   bg=NAVY, fg=WHITE, relief="flat",
                   padx=20, pady=6, cursor="hand2",
                   command=w.destroy).pack(pady=(6,12))
+
+    def _save_to_excel(self, d):
+        file= "violations.xlsx"
+
+        if not os.path.exists(file):
+            wb = Workbook()
+            ws = wb.active
+            ws.append([
+                "Violation ID", "Name", "Aadhar", "Phone",
+                "License", "Status", "Type", "Place",
+                "City", "DateTime", "Fine"
+            ])
+            wb.save(file)
+
+        wb = load_workbook(file)
+        ws = wb.active
+
+        c = d.get("citizen", {})
+
+        ws.append([
+            d.get("violation_id",""),
+            d.get("name",""),
+            c.get("aadhaar",""),
+            c.get("phone",""),
+            c.get("license_no",""),
+            c.get("status",""),
+            d.get("violation_type",""),
+            d.get("place",""),
+            d.get("city",""),
+            d.get("date_time",""),
+            d.get("fine_amount",0),
+        ])
+
+        wb.save(file)
 
     def _ping(self):
         try:

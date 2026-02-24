@@ -255,9 +255,9 @@
             finesCollectedTxt.ForeColor = Color.Black;
             finesCollectedTxt.Location = new Point(47, 78);
             finesCollectedTxt.Name = "finesCollectedTxt";
-            finesCollectedTxt.Size = new Size(242, 81);
+            finesCollectedTxt.Size = new Size(105, 81);
             finesCollectedTxt.TabIndex = 1;
-            finesCollectedTxt.Text = "1.3 lacs";
+            finesCollectedTxt.Text = "₹0";
             finesCollectedTxt.Click += finesCollectedTxt_Click;
             // 
             // label5

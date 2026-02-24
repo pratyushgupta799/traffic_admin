@@ -67,7 +67,7 @@ def classify_text(text):
 
 
 def get_citizen(name):
-    df = pd.read_excel(DB_FILE, sheet_name="Citizens", header=3)
+    df = pd.read_excel(DB_FILE, sheet_name="Citizens", header=0)
     df.columns = df.columns.str.strip()
     m = df[df["Name"].astype(str).str.strip() == name.strip()]
     if m.empty: return None
@@ -292,8 +292,9 @@ def get_violations():
 @app.route("/citizens", methods=["GET"])
 def get_citizens():
     try:
-        df = pd.read_excel(DB_FILE, sheet_name="Citizens", header=3)
+        df = pd.read_excel(DB_FILE, sheet_name="Citizens", header=0)
         df.columns = df.columns.str.strip()
+        print(df.columns.tolist())
         return jsonify({"success": True,
                         "citizens": df.dropna(how="all").fillna("").to_dict("records")})
     except Exception as e:

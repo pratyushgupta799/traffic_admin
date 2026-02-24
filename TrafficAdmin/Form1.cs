@@ -22,8 +22,8 @@ namespace TrafficAdmin
             string[] cities = { "Pune", "Chandigarh", "New Delhi", "Mumbai", "Bengaluru" };
             double[] counts = { 1987000, 985000, 1165213, 62000, 0 };
 
-            // Use cities as “bins” just like histogram bins
-            // we create arrays of “bins” that match city indices
+            // Use cities as â€œbinsâ€ just like histogram bins
+            // we create arrays of â€œbinsâ€ that match city indices
             double[] bins = { 0, 1, 2, 3, 4 };
 
             // Plot as bars
@@ -83,7 +83,7 @@ namespace TrafficAdmin
 
             // labels
             formsPlot2.Plot.Title("Traffic Violations vs Time of Day");
-            formsPlot2.Plot.XLabel("Hour of Day (0–23)");
+            formsPlot2.Plot.XLabel("Hour of Day (0â€“23)");
             formsPlot2.Plot.YLabel("Violations");
 
             // refresh
@@ -118,41 +118,20 @@ namespace TrafficAdmin
             upload.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+                private void button3_Click(object sender, EventArgs e)
         {
             string pythonExe = @"C:\Users\Annika Dubey\AppData\Local\Programs\Python\Python311\python.exe";
-            string scriptPath = @"C:\Users\Annika Dubey\face_api\gui_app.py";
+            string faceApiDir = @"C:\Users\Annika Dubey\face_api";
+            string guiScript = System.IO.Path.Combine(faceApiDir, "gui_app.py");
 
-            // Check if app.py (Flask API) is already running, if not start it too
-            bool apiRunning = System.Diagnostics.Process.GetProcessesByName("python").Length > 0;
+            var psi = new System.Diagnostics.ProcessStartInfo();
+            psi.FileName = pythonExe;
+            psi.Arguments = "\"" + guiScript + "\"";
+            psi.WorkingDirectory = faceApiDir;
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
 
-            if (!apiRunning)
-            {
-                // Start Flask API in background
-                var apiProcess = new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = pythonExe,
-                    Arguments = $"\"{System.IO.Path.Combine(System.IO.Path.GetDirectoryName(scriptPath), "app.py")}\"",
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    WorkingDirectory = System.IO.Path.GetDirectoryName(scriptPath)
-                };
-                System.Diagnostics.Process.Start(apiProcess);
-
-                // Give Flask a moment to start
-                System.Threading.Thread.Sleep(2500);
-            }
-
-            // Launch the Python GUI
-            var guiProcess = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = pythonExe,
-                Arguments = $"\"{scriptPath}\"",
-                UseShellExecute = false,
-                CreateNoWindow = false,
-                WorkingDirectory = System.IO.Path.GetDirectoryName(scriptPath)
-            };
-            System.Diagnostics.Process.Start(guiProcess);
+            System.Diagnostics.Process.Start(psi);
         }
     }
 }

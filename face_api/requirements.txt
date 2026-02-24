@@ -1,0 +1,8 @@
+face_recognition
+flask
+flask-cors
+opencv-python
+numpy
+pandas
+openpyxl
+Pillow

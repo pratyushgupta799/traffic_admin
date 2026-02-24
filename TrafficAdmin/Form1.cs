@@ -117,5 +117,42 @@ namespace TrafficAdmin
             Upload upload = new Upload();
             upload.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string pythonExe = @"C:\Users\Annika Dubey\AppData\Local\Programs\Python\Python311\python.exe";
+            string scriptPath = @"C:\Users\Annika Dubey\face_api\gui_app.py";
+
+            // Check if app.py (Flask API) is already running, if not start it too
+            bool apiRunning = System.Diagnostics.Process.GetProcessesByName("python").Length > 0;
+
+            if (!apiRunning)
+            {
+                // Start Flask API in background
+                var apiProcess = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = pythonExe,
+                    Arguments = $"\"{System.IO.Path.Combine(System.IO.Path.GetDirectoryName(scriptPath), "app.py")}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(scriptPath)
+                };
+                System.Diagnostics.Process.Start(apiProcess);
+
+                // Give Flask a moment to start
+                System.Threading.Thread.Sleep(2500);
+            }
+
+            // Launch the Python GUI
+            var guiProcess = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = pythonExe,
+                Arguments = $"\"{scriptPath}\"",
+                UseShellExecute = false,
+                CreateNoWindow = false,
+                WorkingDirectory = System.IO.Path.GetDirectoryName(scriptPath)
+            };
+            System.Diagnostics.Process.Start(guiProcess);
+        }
     }
 }

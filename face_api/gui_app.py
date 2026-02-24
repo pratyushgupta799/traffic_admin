@@ -3,6 +3,7 @@ gui_app.py — TrafficAdmin v6
 Fixed layout: camera fills left panel properly, buttons at bottom, form on right.
 """
 import tkinter as tk
+from tkinter import filedialog
 from tkinter import messagebox
 import requests, threading, cv2, io
 from PIL import Image, ImageTk
@@ -98,6 +99,18 @@ class App:
                                    font=("Segoe UI",11,"bold"),
                                    bg="#1A1A1A", fg="#2ECC71")
         self.cap_status.place(x=460, y=22)
+
+        self.upload_btn = tk.Button(
+            btn_bar,
+            text="Upload Image",
+            font=("Segoe UI", 11, "bold"),
+            bg="#5DADE2", fg=WHITE,
+            activebackground="#2E86C1",
+            relief="flat", cursor="hand2",
+            padx=24, pady=14,
+            command=self._upload_image
+        )
+        self.upload_btn.place(x=460, y = 12)
 
         # ══ RIGHT PANEL — form ════════════════════════════════
         right = tk.Frame(body, bg=WHITE)
@@ -220,6 +233,31 @@ class App:
         self.cap_status.config(text="✔ Captured")
         self._check_ready()
         self._st("Frame captured ✓ — fill in the details on the right and submit")
+
+    def _upload_image(self):
+        file_path = filedialog.askopenfilename(
+            title="Select Image",
+            filetypes=[("Image Files", "*.png *.jpg *.jpeg")]
+        )
+        if not file_path:
+            return
+
+        try:
+            img = Image.open(file_path).convert("RGB")
+            self._captured = img
+
+            # Show preview in camera area
+            preview = img.resize((CAM_W, CAM_H), Image.LANCZOS)
+            ph = ImageTk.PhotoImage(preview)
+            self.cam_lbl.config(image=ph, text="")
+            self.cam_lbl.image = ph
+
+            self.cap_status.config(text="✔ Image Loaded")
+            self._check_ready()
+            self._st("Image loaded from gallery ✓ — fill details and submit")
+
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
 
     # ── Classification ─────────────────────────────────────────
     def _on_type(self, _=None):

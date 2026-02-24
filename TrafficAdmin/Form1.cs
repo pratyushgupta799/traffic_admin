@@ -118,10 +118,11 @@ namespace TrafficAdmin
             upload.Show();
         }
 
-                private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            string pythonExe = @"C:\Users\Annika Dubey\AppData\Local\Programs\Python\Python311\python.exe";
-            string faceApiDir = @"C:\Users\Annika Dubey\face_api";
+            //MessageBox.Show("cam and ai");
+            string pythonExe = @"C:\Users\praty\AppData\Local\Programs\Python\Python311\python.exe";
+            string faceApiDir = @"C:\Users\praty\Desktop\TrafficAdmin\face_api";
             string guiScript = System.IO.Path.Combine(faceApiDir, "gui_app.py");
 
             var psi = new System.Diagnostics.ProcessStartInfo();

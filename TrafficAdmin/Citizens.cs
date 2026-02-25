@@ -44,7 +44,7 @@ namespace TrafficAdmin
 
             if (!string.IsNullOrEmpty(nameFilter))
             {
-                filterExpression += $"Name LIKE '%{nameFilter}%'";
+                filterExpression += $"name LIKE '%{nameFilter}%'";
             }
 
             if (!string.IsNullOrEmpty(aadhaarFilter))

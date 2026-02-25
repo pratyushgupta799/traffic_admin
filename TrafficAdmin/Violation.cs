@@ -59,7 +59,7 @@ namespace TrafficAdmin
 
             if (!string.IsNullOrEmpty(nameFilter))
             {
-                filterExpression += $"[Driver Name] LIKE '%{nameFilter}%'";
+                filterExpression += $"[name] LIKE '%{nameFilter}%'";
             }
 
             if (!string.IsNullOrEmpty(typeFilter))
@@ -67,7 +67,7 @@ namespace TrafficAdmin
                 if (filterExpression != "")
                     filterExpression += " AND ";
 
-                filterExpression += $"[Violation Type] LIKE '%{typeFilter}%'";
+                filterExpression += $"[violation_type] LIKE '%{typeFilter}%'";
             }
 
             violationTable.DefaultView.RowFilter = filterExpression;
@@ -94,7 +94,7 @@ namespace TrafficAdmin
         {
             //LoadExcelData();
             var dt = await LoadFromApi();
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = violationTable;
         }
 
         private void LoadExcelData()
@@ -102,7 +102,7 @@ namespace TrafficAdmin
             string filePath = @"C:\Users\praty\Desktop\TrafficAdmin\face_api\violations.xlsx";
 
             if (!File.Exists(filePath))
-            {
+            {   
                 MessageBox.Show("Excel file not found.");
                 return;
             }
@@ -148,6 +148,7 @@ namespace TrafficAdmin
 
                 // Convert JSON to DataTable
                 DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
+                violationTable = dt;
                 return dt;
             }
         }

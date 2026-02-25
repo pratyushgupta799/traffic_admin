@@ -50,6 +50,7 @@
             label7 = new Label();
             formsPlot1 = new ScottPlot.WinForms.FormsPlot();
             formsPlot2 = new ScottPlot.WinForms.FormsPlot();
+            button7 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -323,12 +324,24 @@
             formsPlot2.Size = new Size(491, 264);
             formsPlot2.TabIndex = 7;
             // 
+            // button7
+            // 
+            button7.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button7.Location = new Point(1364, 24);
+            button7.Name = "button7";
+            button7.Size = new Size(64, 60);
+            button7.TabIndex = 8;
+            button7.Text = "↻";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1455, 704);
+            Controls.Add(button7);
             Controls.Add(formsPlot2);
             Controls.Add(formsPlot1);
             Controls.Add(panel5);
@@ -376,5 +389,6 @@
         private Button button3;
         private Button button5;
         private Button button6;
+        private Button button7;
     }
 }

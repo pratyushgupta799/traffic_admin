@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using OfficeOpenXml;
 using System.IO;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace TrafficAdmin
 {
@@ -89,9 +90,11 @@ namespace TrafficAdmin
 
         }
 
-        private void Violation_Load_1(object sender, EventArgs e)
+        private async void Violation_Load_1(object sender, EventArgs e)
         {
-            LoadExcelData();
+            //LoadExcelData();
+            var dt = await LoadFromApi();
+            dataGridView1.DataSource = dt;
         }
 
         private void LoadExcelData()
@@ -133,6 +136,20 @@ namespace TrafficAdmin
             }
 
             dataGridView1.DataSource = violationTable;
+        }
+
+        private async Task<DataTable> LoadFromApi()
+        {
+            string url = "https://purple-mud-c6ef.pratyush-gupta.workers.dev/";
+
+            using (HttpClient client = new HttpClient())
+            {
+                string json = await client.GetStringAsync(url);
+
+                // Convert JSON to DataTable
+                DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
+                return dt;
+            }
         }
     }
 }

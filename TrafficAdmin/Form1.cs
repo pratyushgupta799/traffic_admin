@@ -1,4 +1,5 @@
 using MathNet.Numerics;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using ScottPlot;
 using System.Data;
@@ -18,68 +19,72 @@ namespace TrafficAdmin
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            DataTable dt = LoadExcel();
+            DataTable dt = await LoadFromApi();
+            LoadDashboard(dt);
 
-            // ---- TOTAL VIOLATIONS
-            int totalViolations = dt.Rows.Count;
-            violationCountTxt.Text = totalViolations.ToString();
+            //DataTable dt = LoadExcel();
+            //DataTable dt = LoadFromApi().Result;
 
-            // ---- TOTAL FINE + DUE
-            double totalFine = 0;
+            //// ---- TOTAL VIOLATIONS
+            //int totalViolations = dt.Rows.Count;
+            //violationCountTxt.Text = totalViolations.ToString();
 
-            foreach (DataRow row in dt.Rows)
-            {
-                double fine = Convert.ToDouble(row["Fine"]);
-                totalFine += fine;
-            }
+            //// ---- TOTAL FINE + DUE
+            //double totalFine = 0;
 
-            fineDueTxt.Text = totalFine.ToString("₹0");
+            //foreach (DataRow row in dt.Rows)
+            //{
+            //    double fine = Convert.ToDouble(row["fine_amount"]);
+            //    totalFine += fine;
+            //}
 
-            // ---- GROUP BY CITY
-            var cityGroups = dt.AsEnumerable()
-                .GroupBy(r => r["City"].ToString())
-                .OrderByDescending(g => g.Count())
-                .Take(5)
-                .ToList();
+            //fineDueTxt.Text = totalFine.ToString("₹0");
 
-            double[] cityCounts = cityGroups.Select(g => (double)g.Count()).ToArray();
-            string[] cities = cityGroups.Select(g => g.Key).ToArray();
-            double[] bins = Enumerable.Range(0, cities.Length).Select(x => (double)x).ToArray();
+            //// ---- GROUP BY CITY
+            //var cityGroups = dt.AsEnumerable()
+            //    .GroupBy(r => r["city"].ToString())
+            //    .OrderByDescending(g => g.Count())
+            //    .Take(5)
+            //    .ToList();
 
-            formsPlot1.Plot.Clear();
-            formsPlot1.Plot.Add.Bars(bins, cityCounts);
+            //double[] cityCounts = cityGroups.Select(g => (double)g.Count()).ToArray();
+            //string[] cities = cityGroups.Select(g => g.Key).ToArray();
+            //double[] bins = Enumerable.Range(0, cities.Length).Select(x => (double)x).ToArray();
 
-            ScottPlot.Tick[] ticks = new ScottPlot.Tick[cities.Length];
-            for (int i = 0; i < cities.Length; i++)
-                ticks[i] = new ScottPlot.Tick(i, cities[i]);
+            //formsPlot1.Plot.Clear();
+            //formsPlot1.Plot.Add.Bars(bins, cityCounts);
 
-            formsPlot1.Plot.Axes.Bottom.TickGenerator =
-                new ScottPlot.TickGenerators.NumericManual(ticks);
+            //ScottPlot.Tick[] ticks = new ScottPlot.Tick[cities.Length];
+            //for (int i = 0; i < cities.Length; i++)
+            //    ticks[i] = new ScottPlot.Tick(i, cities[i]);
 
-            formsPlot1.Plot.Title("Top Cities Violations");
-            formsPlot1.Refresh();
+            //formsPlot1.Plot.Axes.Bottom.TickGenerator =
+            //    new ScottPlot.TickGenerators.NumericManual(ticks);
 
-            // ---- GROUP BY HOUR
-            var hourGroups = dt.AsEnumerable()
-                .GroupBy(r =>
-                {
-                    DateTime time = DateTime.Parse(r["DateTime"].ToString());
-                    return time.Hour;
-                })
-                .OrderBy(g => g.Key)
-                .ToList();
+            //formsPlot1.Plot.Title("Top Cities Violations");
+            //formsPlot1.Refresh();
 
-            double[] xs = hourGroups.Select(g => (double)g.Key).ToArray();
-            double[] ys = hourGroups.Select(g => (double)g.Count()).ToArray();
+            //// ---- GROUP BY HOUR
+            //var hourGroups = dt.AsEnumerable()
+            //    .GroupBy(r =>
+            //    {
+            //        DateTime time = DateTime.Parse(r["date_time"].ToString());
+            //        return time.Hour;
+            //    })
+            //    .OrderBy(g => g.Key)
+            //    .ToList();
 
-            formsPlot2.Plot.Clear();
-            formsPlot2.Plot.Add.Scatter(xs, ys);
-            formsPlot2.Plot.Title("Violations vs Time");
-            formsPlot2.Plot.XLabel("Hour");
-            formsPlot2.Plot.YLabel("Violations");
-            formsPlot2.Refresh();
+            //double[] xs = hourGroups.Select(g => (double)g.Key).ToArray();
+            //double[] ys = hourGroups.Select(g => (double)g.Count()).ToArray();
+
+            //formsPlot2.Plot.Clear();
+            //formsPlot2.Plot.Add.Scatter(xs, ys);
+            //formsPlot2.Plot.Title("Violations vs Time");
+            //formsPlot2.Plot.XLabel("Hour");
+            //formsPlot2.Plot.YLabel("Violations");
+            //formsPlot2.Refresh();
         }
 
         private DataTable LoadExcel()
@@ -170,6 +175,92 @@ namespace TrafficAdmin
         private void fineDueTxt_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private async void button7_Click(object sender, EventArgs e)
+        {
+            //LoadExcel();
+            DataTable dt = await LoadFromApi();
+            LoadDashboard(dt);
+        }
+
+        private async Task<DataTable> LoadFromApi()
+        {
+            string url = "https://purple-mud-c6ef.pratyush-gupta.workers.dev/";
+
+            using (HttpClient client = new HttpClient())
+            {
+                string json = await client.GetStringAsync(url);
+
+                // Convert JSON to DataTable
+                DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
+                return dt;
+            }
+        }
+
+        private void LoadDashboard(DataTable dt)
+        {
+            // TOTAL VIOLATIONS
+            violationCountTxt.Text = dt.Rows.Count.ToString();
+
+            double fineCollected = dt.AsEnumerable()
+                .Where(r => r["status"].ToString() == "Paid")
+                .Sum(r => Convert.ToDouble(r["fine_amount"]));
+
+            double fineDue = dt.AsEnumerable()
+                .Where(r => r["status"].ToString() == "Pending")
+                .Sum(r => Convert.ToDouble(r["fine_amount"]));
+
+            finesCollectedTxt.Text = fineCollected.ToString("₹0");
+            fineDueTxt.Text = fineDue.ToString("₹0");
+
+            // GROUP BY CITY
+            var cityGroups = dt.AsEnumerable()
+                .GroupBy(r => r["city"].ToString())
+                .OrderByDescending(g => g.Count())
+                .Take(5)
+                .ToList();
+
+            double[] cityCounts = cityGroups.Select(g => (double)g.Count()).ToArray();
+            string[] cities = cityGroups.Select(g => g.Key).ToArray();
+            double[] bins = Enumerable.Range(0, cities.Length).Select(x => (double)x).ToArray();
+
+            formsPlot1.Plot.Clear();
+
+            var bar = formsPlot1.Plot.Add.Bars(bins, cityCounts);
+            //bar.Bars. = 0.6;
+
+            ScottPlot.Tick[] ticks = new ScottPlot.Tick[cities.Length];
+            for (int i = 0; i < cities.Length; i++)
+                ticks[i] = new ScottPlot.Tick(i, cities[i]);
+
+            formsPlot1.Plot.Axes.Bottom.TickGenerator =
+                new ScottPlot.TickGenerators.NumericManual(ticks);
+
+            formsPlot1.Plot.Title("Top Cities Violations");
+            formsPlot1.Plot.Axes.AutoScale();
+            formsPlot1.Refresh();
+
+            // GROUP BY HOUR
+            var hourGroups = dt.AsEnumerable()
+                .GroupBy(r => DateTime.Parse(r["date_time"].ToString()).Hour)
+                .OrderBy(g => g.Key)
+                .ToList();
+
+            double[] xs = hourGroups.Select(g => (double)g.Key).ToArray();
+            double[] ys = hourGroups.Select(g => (double)g.Count()).ToArray();
+
+            formsPlot2.Plot.Clear();
+
+            var scatter = formsPlot2.Plot.Add.Scatter(xs, ys);
+            scatter.MarkerSize = 5;
+
+            formsPlot2.Plot.Title("Violations vs Time");
+            formsPlot2.Plot.XLabel("Hour");
+            formsPlot2.Plot.YLabel("Violations");
+
+            formsPlot2.Plot.Axes.AutoScale();
+            formsPlot2.Refresh();
         }
     }
 }

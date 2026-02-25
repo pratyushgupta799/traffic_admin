@@ -17,6 +17,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from datetime import datetime
 import pandas as pd
 import io, os
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -257,6 +258,29 @@ def submit_violation():
             break
 
     wb.save(DB_FILE)
+
+    try:
+        r = requests.post(
+            "https://purple-mud-c6ef.pratyush-gupta.workers.dev/",
+            json={
+                "id": vio_id,
+                "name": name,
+                "aadhaar": citizen["aadhaar"],
+                "phone": citizen["phone"],
+                "license_no": citizen["license_no"],
+                "violation_type": violation_type,
+                "place": place,
+                "city": city,
+                "date_time": date_time_str,
+                "fine_amount": fine_amount,
+            },
+            timeout=5
+        )
+
+        print("[D1] Worker response:", r.text)
+
+    except Exception as e:
+        print("[D1 ERROR]", e)
 
     return jsonify({
         "success":            True,
